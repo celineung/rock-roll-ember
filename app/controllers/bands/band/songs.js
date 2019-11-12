@@ -19,6 +19,12 @@ export default Controller.extend({
 
   saveSong: action(function(event) {
     event.preventDefault();
-    let newSong = Song.create({ title: this.newSongTitle }); this.model.songs.pushObject(newSong); this.set('newSongTitle', '');
-  })
+    let newSong = Song.create({ title: this.newSongTitle });
+    this.model.songs.pushObject(newSong);
+    this.set('newSongTitle', '');
+  }),
+
+  updateRating: action(function(song, newRating) {
+    song.set('rating', song.rating === newRating ? 0 : newRating);
+  }),
 });
